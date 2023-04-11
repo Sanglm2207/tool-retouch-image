@@ -30,7 +30,7 @@ rl.question(
                 "Nhập kích thước lề phía phải (số > 0): ",
                 (marginRightInput) => {
                   marginRight = parseInt(marginRightInput);
-                  if (marginRight < 0) marginRight = 0;
+                  if (marginRight < 0) marginLeft = 0;
                   processImages(
                     inputPath,
                     marginTop,

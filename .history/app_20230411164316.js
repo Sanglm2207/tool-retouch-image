@@ -20,17 +20,15 @@ rl.question(
         "Nhập kích thước lề phía dưới (số > 0): ",
         (marginBottomInput) => {
           marginBottom = parseInt(marginBottomInput);
-          if (marginBottom < 0) marginBottom = 0;
+          if (marginBottom < 0) marginTop = 0;
           rl.question(
             "Nhập kích thước lề phía trái (số > 0): ",
             (marginLeftInput) => {
               marginLeft = parseInt(marginLeftInput);
-              if (marginLeft < 0) marginLeft = 0;
               rl.question(
                 "Nhập kích thước lề phía phải (số > 0): ",
                 (marginRightInput) => {
                   marginRight = parseInt(marginRightInput);
-                  if (marginRight < 0) marginRight = 0;
                   processImages(
                     inputPath,
                     marginTop,
