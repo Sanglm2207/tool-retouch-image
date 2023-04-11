@@ -74,7 +74,7 @@ async function processImages(
           left: marginLeft,
           right: marginRight,
           background: { r: 0, g: 0, b: 0, alpha: 0 },
-          // background: { r: 255, g: 255, b: 255, alpha: 1 },
+          background: { r: 255, g: 255, b: 255, alpha: 1 },
         })
         .toFile(outputFile);
     }

@@ -11,49 +11,34 @@ const rl = readline.createInterface({
 rl.question(
   "Nhập đường dẫn đến thư mục chứa ảnh (vd: /path/to/folder): ",
   (inputPath) => {
-    let marginTop, marginBottom, marginLeft, marginRight;
-
-    rl.question("Nhập kích thước lề phía trên (số > 0): ", (marginTopInput) => {
-      marginTop = parseInt(marginTopInput);
-      rl.question(
-        "Nhập kích thước lề phía dưới (số > 0): ",
-        (marginBottomInput) => {
-          marginBottom = parseInt(marginBottomInput);
+    margin = parseInt(margin);
+    rl.question("Nhập độ dài mở rộng ảnh phía trên (số > 0): ", (top) => {
+      top = parseInt(top);
+      rl.question("Nhập độ dài mở rộng ảnh phía dưới (số > 0): ", (bottom) => {
+        bottom = parseInt(bottom);
+        rl.question("Nhập độ dài mở rộng ảnh phía trái (số > 0): ", (left) => {
+          left = parseInt(left);
           rl.question(
-            "Nhập kích thước lề phía trái (số > 0): ",
-            (marginLeftInput) => {
-              marginLeft = parseInt(marginLeftInput);
-              rl.question(
-                "Nhập kích thước lề phía phải (số > 0): ",
-                (marginRightInput) => {
-                  marginRight = parseInt(marginRightInput);
-                  processImages(
-                    inputPath,
-                    marginTop,
-                    marginBottom,
-                    marginLeft,
-                    marginRight
-                  );
-                  rl.close();
-                }
-              );
+            "Nhập độ dài mở rộng ảnh phía phải (số > 0): ",
+            (right) => {
+              right = parseInt(right);
+              processImages(inputPath, top, bottom, left, right);
+              rl.close();
             }
           );
-        }
-      );
+        });
+      });
     });
   }
 );
 
 async function processImages(
   inputPath,
-  marginTop,
-  marginBottom,
   marginLeft,
-  marginRight
+  marginRight,
+  marginTop,
+  marginBottom
 ) {
-  console.log("inputPath: ", inputPath);
-
   // create output directory
   const outputPath = path.join(path.dirname(inputPath), "output");
   if (!fs.existsSync(outputPath)) {
@@ -74,7 +59,6 @@ async function processImages(
           left: marginLeft,
           right: marginRight,
           background: { r: 0, g: 0, b: 0, alpha: 0 },
-          // background: { r: 255, g: 255, b: 255, alpha: 1 },
         })
         .toFile(outputFile);
     }

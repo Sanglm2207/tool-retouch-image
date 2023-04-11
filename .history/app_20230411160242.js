@@ -11,30 +11,36 @@ const rl = readline.createInterface({
 rl.question(
   "Nhập đường dẫn đến thư mục chứa ảnh (vd: /path/to/folder): ",
   (inputPath) => {
-    let marginTop, marginBottom, marginLeft, marginRight;
-
-    rl.question("Nhập kích thước lề phía trên (số > 0): ", (marginTopInput) => {
-      marginTop = parseInt(marginTopInput);
+    let margin, top, bottom, left, right;
+    rl.question("Nhập kích thước lề margin (số > 0): ", (marginInput) => {
+      margin = parseInt(marginInput);
       rl.question(
-        "Nhập kích thước lề phía dưới (số > 0): ",
-        (marginBottomInput) => {
-          marginBottom = parseInt(marginBottomInput);
+        "Nhập độ dài mở rộng ảnh phía trên (số > 0): ",
+        (topInput) => {
+          top = parseInt(topInput);
           rl.question(
-            "Nhập kích thước lề phía trái (số > 0): ",
-            (marginLeftInput) => {
-              marginLeft = parseInt(marginLeftInput);
+            "Nhập độ dài mở rộng ảnh phía dưới (số > 0): ",
+            (bottomInput) => {
+              bottom = parseInt(bottomInput);
               rl.question(
-                "Nhập kích thước lề phía phải (số > 0): ",
-                (marginRightInput) => {
-                  marginRight = parseInt(marginRightInput);
-                  processImages(
-                    inputPath,
-                    marginTop,
-                    marginBottom,
-                    marginLeft,
-                    marginRight
+                "Nhập độ dài mở rộng ảnh phía trái (số > 0): ",
+                (leftInput) => {
+                  left = parseInt(leftInput);
+                  rl.question(
+                    "Nhập độ dài mở rộng ảnh phía phải (số > 0): ",
+                    (rightInput) => {
+                      right = parseInt(rightInput);
+                      processImages(
+                        inputPath,
+                        top,
+                        bottom,
+                        left,
+                        right,
+                        margin
+                      );
+                      rl.close();
+                    }
                   );
-                  rl.close();
                 }
               );
             }
@@ -47,10 +53,10 @@ rl.question(
 
 async function processImages(
   inputPath,
-  marginTop,
-  marginBottom,
   marginLeft,
-  marginRight
+  marginRight,
+  marginTop,
+  marginBottom
 ) {
   console.log("inputPath: ", inputPath);
 
@@ -74,7 +80,6 @@ async function processImages(
           left: marginLeft,
           right: marginRight,
           background: { r: 0, g: 0, b: 0, alpha: 0 },
-          // background: { r: 255, g: 255, b: 255, alpha: 1 },
         })
         .toFile(outputFile);
     }
