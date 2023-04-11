@@ -1,0 +1,18 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js inputDir outputDir"
+  },
+  "dependencies": {
+    "axios": "^1.3.5",
+    "canvas": "^2.11.2",
+    "fs": "^0.0.1-security",
+    "jimp": "^0.22.7",
+    "path": "^0.12.7",
+    "readline": "^1.3.0",
+    "sharp": "^0.27.2"
+  }
+}
